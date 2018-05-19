@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { StackNavigator} from 'react-navigation'
 import { Icon, Button, Text } from 'native-base'
 
@@ -8,9 +8,12 @@ import indexSarApp from '../indexSarApp/screens/index.js'
 import listContacts from '../indexSarApp/screens/listContacts'
 import chatBox from '../indexSarApp/screens/chatBox'
 import Profile from '../profile/screens/profile'
+import Setting from '../setting/screens/setting'
+
 
 
 const RootNavigator = StackNavigator({
+
   logSarApp:{
     screen: logSarApp,
     navigationOptions:{
@@ -19,10 +22,10 @@ const RootNavigator = StackNavigator({
   },
   indexSarApp:{
     screen: indexSarApp,
-    navigationOptions:{
+    navigationOptions: ({ navigation }) =>({
       title: 'SarApp',
-      headerRight: ( <Icon style={{marginRight: 10}} name='md-more' /> )
-    }
+      headerRight: ( <TouchableOpacity onPress={()=> navigation.navigate('Setting')}><Icon style={{marginRight: 10}} name='ios-cog' /></TouchableOpacity> )
+    })
   },
   listContacts:{
     screen: listContacts,
@@ -38,6 +41,13 @@ const RootNavigator = StackNavigator({
   },
   Profile:{
     screen: Profile,
+    navigationOptions:{
+      title: null,
+      headerStyle:{ position: 'absolute', backgroundColor: 'transparent', zIndex: 100, top: 0, left: 0, right: 0 }
+    }
+  },
+  Setting:{
+    screen: Setting,
     navigationOptions:{
       title: null,
       headerStyle:{ position: 'absolute', backgroundColor: 'transparent', zIndex: 100, top: 0, left: 0, right: 0 }

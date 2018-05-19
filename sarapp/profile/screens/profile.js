@@ -21,13 +21,14 @@ class Profile extends Component{
 	render(){
 
         const uri = 'https://openclipart.org/image/2400px/svg_to_png/277084/Male-Avatar-3.png'
+        const uriKyk = 'https://wikianime.ru/i/series/7bc687c6fa61718b1b45b3d1be7ac5f1.jpg'
 
 		return(
 			<Container>
 				<Content>
-					{/* <Image style={{height: 150}} source={require('../image/kyo.jpg')} /> */}
+					<Image style={{height: 150}} source={{uri: uriKyk}} />
 					<Card>
-			            <CardItem>
+			            <CardItem style={{justifyContent: 'center', alignContent:'center', alignSelf:'center'}}>
 			              {
 			              	this.props.profileReducer.isLoading ?
 
@@ -38,27 +39,21 @@ class Profile extends Component{
 			              	(
 					            this.props.profileReducer.profiles.map((items, index) => (
 					            	<Body key={index}>
-							            <Thumbnail style={styles.thumbImg} large source={{uri: uri}} />
-						                <Content style={{alignContent: 'center'}}>
-						                	<Text>{items.name}</Text>
-						                	<Text style={{fontSize: 10}}>posisi</Text>
-						                	<Text note style={{fontSize: 10}}>sekolah</Text>
-						                	<Text note style={{fontSize: 10}}>alamat</Text>
+						                <Content style={{alignSelf:'center'}}>
+						                	<Body>
+                                                {/* <Thumbnail style={styles.thumbImg} large source={{uri: uri}} /> */}
+                                                <Text style={{fontSize: 25}}>{items.name}</Text>
+                                                <Text note style={{fontSize: 20}}>`{items.bio}`</Text>
+                                            </Body>
 						                </Content>
-						                <Row style={{marginLeft: 55, marginTop: 20}}>
+						                
+                                        <Row style={{marginLeft: 160, marginTop: 20}}>
 
 						                	<Button bordered info>
-						                		<Text>Message</Text>
-						                	</Button>
-
-						                	<Button info style={{marginLeft:5}}>
-						                		<Text>Follow</Text>
+						                		<Text>Kirim Pesan<Icon style={{color:'#48dbfb'}} name='ios-paper-plane'/></Text>
 						                	</Button>
 
 						                </Row>
-						                <Content style={{marginTop: 20}}>
-						                	<Text style={{fontSize: 10}}>{items.bio}</Text>
-						                </Content>
 					                </Body>
 					            ))
 			              	)
@@ -80,7 +75,7 @@ export default connect(mapStateToProps)(Profile)
 const styles = StyleSheet.create({
 
 	thumbImg: {
-		marginLeft: 100,
+        marginLeft: 100,
 	}
 
 })

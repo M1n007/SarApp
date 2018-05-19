@@ -5,6 +5,7 @@ import Chats from './chat'
 import Status from './status'
 
 export default class indexSarApp extends Component{
+
     render(){
         return(
             <Container>
