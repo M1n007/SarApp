@@ -13,10 +13,11 @@ class listContacts extends Component {
     	this.props.dispatch(getListProfiles())
   	}
     
-    navigateToChatBox(){
+    navigateToChatBox(titleYourName){
         this.props.dispatch({
             type: 'Navigation/NAVIGATE',
-            routeName: 'chatBox'
+            routeName: 'chatBox',
+            params: {titleYourName: titleYourName}
         })
     }
 
@@ -47,7 +48,7 @@ class listContacts extends Component {
 			 								leftOpenValue =	{60}
                                             rightOpenValue ={-60}
 			 								left={
-			 									<Button onPress={()=> this.navigateToProfiles(id = items.objectId)}>
+			 									<Button onPress={()=> this.navigateToProfiles(id=items.objectId, titleYourName=items.name)}>
 			 										 <Thumbnail source={{ uri: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png' }} />
 			 									</Button>
                                             }

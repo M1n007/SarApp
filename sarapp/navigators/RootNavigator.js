@@ -9,6 +9,7 @@ import listContacts from '../indexSarApp/screens/listContacts'
 import chatBox from '../indexSarApp/screens/chatBox'
 import Profile from '../profile/screens/profile'
 import Setting from '../setting/screens/setting'
+import regSarApp from '../register/screens/register'
 
 
 
@@ -16,6 +17,12 @@ const RootNavigator = StackNavigator({
 
   logSarApp:{
     screen: logSarApp,
+    navigationOptions:{
+      header: null
+    }
+  },
+  regSarApp:{
+    screen: regSarApp,
     navigationOptions:{
       header: null
     }

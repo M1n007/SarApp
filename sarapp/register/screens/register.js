@@ -13,61 +13,36 @@ import {
 } from 'native-base';
 import { connect } from 'react-redux';
 
-import { loginDetail } from '../actions'
+import { postRegister } from '../actions'
 
-class logSarApp extends Component{
+class regSarApp extends Component{
 
-     
     state = {
-        form: []
+        name: '',
+        email: '',
+        pass: ''
     }
+     
+    
+    handleRegist(){
 
-    componentDidMount(){
+        let valueName = this.state.name
+        let valueEmail = this.state.email
+        let valuePass = this.state.pass
 
-        AsyncStorage.multiGet(['userToken', 'objectID', 'email'], (error, result) => {
-            if (result) {
-                if(result[0][1] !== null){
-                    this.props.dispatch({
-						type: 'Navigation/RESET',
-						index: 0,
-						key: null,
-						actions: [{
-							type: 'Navigation/NAVIGATE',
-							routeName: 'indexSarApp'
-						}]
-					})
-                }
-            }
-        });
+        this.props.dispatch(postRegister(valueName, valueEmail, valuePass))
 
-    }
-
-    handleLogin(){
-        this.props.dispatch(loginDetail(this.state.form))
-
-        .then(result => {
-
-            AsyncStorage.multiSet([
-                ['userToken', result.value.data['user-token']],
-                ['objectID', result.value.data.objectId],
-                ['email', result.value.data.email]
-            ]);
+        if (this.props.registerReducer.isLoading == false) {
+            
+            alert('Berhasil Mendaftar')
 
             this.props.dispatch({
-				type: 'Navigation/RESET',
-				index: 0,
-				key: null,
-				actions: [{
-					type: 'Navigation/NAVIGATE',
-					routeName: 'indexSarApp'
-				}]
-			})
+                type: 'Navigation/NAVIGATE',
+                routeName: 'logSarApp'
+            })
 
-            alert('sukses login')
+        }
 
-        }).catch(e => {
-            alert(e)
-        })
     }
 
     render(){
@@ -83,12 +58,23 @@ class logSarApp extends Component{
                     <Form>
 
                         <View style={styles.itemForm}>
+                            <Label style={{marginTop:5}}>Name</Label>
+                            <Item regular>
+                                <Input 
+                                placeholder="Input Your Name" 
+                                placeholderTextColor='#D0D0D0'
+                                onChangeText={name => this.setState({  name: name })}
+                                />
+                            </Item>
+                        </View>
+
+                        <View style={styles.itemForm}>
                             <Label style={{marginTop:5}}>Email</Label>
                             <Item regular>
                                 <Input 
                                 placeholder="Input Your Email" 
                                 placeholderTextColor='#D0D0D0'
-                                onChangeText={email => this.setState({ form: { ...this.state.form, login: email} })}
+                                onChangeText={email => this.setState({ email: email} )}
                                 />
                             </Item>
                         </View>
@@ -101,21 +87,21 @@ class logSarApp extends Component{
                                 secureTextEntry={true} 
                                 placeholder="Input your password" 
                                 placeholderTextColor='#D0D0D0' 
-                                onChangeText={password => this.setState({ form: { ...this.state.form, password} })}
+                                onChangeText={password => this.setState({ pass: password })}
                                 />
                             </Item>
                         </View>
 
                         <View style={styles.itemForm}>
-                            <Button block onPress={() => this.handleLogin()} style={{backgroundColor: '#026aa7'}}>
-                                {this.props.loginDetailReducers.isLoading == !true ? (
-                                    <Text>Login</Text>
+                            <Button block onPress={() => this.handleRegist()} style={{backgroundColor: '#026aa7'}}>
+                                {this.props.registerReducer.isLoading == !true ? (
+                                    <Text>Daftar</Text>
                                 ) : (
                                     <Spinner color='white' />
                                 )}
                             </Button>
-                            <TouchableOpacity style={{marginTop:10, alignSelf: 'center' }} onPress={() => this.props.navigation.navigate('regSarApp')}>
-                                <Text style={{color: '#026aa7'}}>Belum punya akun ? Daftar disini!</Text>
+                            <TouchableOpacity style={{marginTop:10, alignSelf: 'center' }} onPress={() => this.props.navigation.navigate('logSarApp')}>
+                                <Text style={{color: '#026aa7'}}>sudah punya akun ? Login</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -128,11 +114,11 @@ class logSarApp extends Component{
 
 const mapStateToProps = (state) => {
     return{
-        loginDetailReducers: state.loginDetailReducers
+        registerReducer: state.registerReducer
     }
 }
 
-export default connect(mapStateToProps)(logSarApp)
+export default connect(mapStateToProps)(regSarApp)
 
 const styles = StyleSheet.create({
     logo: {

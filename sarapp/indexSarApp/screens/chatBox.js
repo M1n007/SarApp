@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 class chatBox extends Component{
+
     backToPreviousPage(){
         this.props.dispatch({
             type:'Navigation/BACK',
@@ -48,7 +49,7 @@ class chatBox extends Component{
                         <Icon name='md-arrow-round-back' onPress={()=> this.backToPreviousPage()}/>
                     </Left>
                     <Body>
-                        <Title>Nama</Title>
+                        <Title>yy</Title>
                     </Body>
                     <Right>
 

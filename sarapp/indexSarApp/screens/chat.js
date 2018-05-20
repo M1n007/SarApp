@@ -39,22 +39,23 @@ class Chats extends Component {
     return (
         <Container>
             <Content>
-                <TouchableOpacity onPress={()=> this.navigateToChatBox()}>
                     <List>
                         <ListItem avatar>
+                        
                             <Left>
                                 <Thumbnail source={{ uri: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png' }} />
                             </Left>
+                            <TouchableOpacity onPress={()=> this.navigateToChatBox()}>
                             <Body>
                                 <Text>Kumar Pratik</Text>
                                 <Text note>Doing what you like will always keep you happy . .</Text>
                             </Body>
+                            </TouchableOpacity>
                             <Right>
                                 <Text note>3:43 pm</Text>
                             </Right>
-                        </ListItem>
+                        </ListItem> 
                     </List>
-                </TouchableOpacity>
             </Content>
             <Fab
                 active={this.state.active}

@@ -2,7 +2,7 @@ const initialState = {
     users:[],
     isLoading: false,
     isError: false
-  }
+}
   
   const listUserReducers = ( state = initialState, action ) => {
     switch(action.type){

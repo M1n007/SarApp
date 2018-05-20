@@ -16,9 +16,9 @@ export default class indexSarApp extends Component{
                     <Tab heading={ <TabHeading><Text>Status</Text></TabHeading>}>
                         <Status />
                     </Tab>
-                    <Tab heading={ <TabHeading><Icon name="camera" /></TabHeading>}>
+                    {/* <Tab heading={ <TabHeading><Icon name="camera" /></TabHeading>}>
                         <Text>test 1</Text>
-                    </Tab>
+                    </Tab> */}
                 </Tabs>
             </Container>
         )

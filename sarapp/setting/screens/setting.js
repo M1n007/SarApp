@@ -23,6 +23,19 @@ class Setting extends Component{
         })
     }
 
+    handleLogOut(){
+        AsyncStorage.multiRemove(['userToken', 'objectID', 'email'], (error, result) => {
+           
+        })
+
+        alert('berhasil LogOut')
+
+        this.props.dispatch({
+            type: 'Navigation/NAVIGATE',
+            routeName: 'logSarApp'
+        })
+    }
+
 	componentDidMount(){
     	this.props.dispatch(getSettingProfiles())
   	}
@@ -78,6 +91,17 @@ class Setting extends Component{
 			              	)
 			              }
 			            </CardItem>
+                        <CardItem>
+                              <Left>
+                                  <Text>LogOut</Text>
+                              </Left>
+                              <Body/>
+                              <Right>
+                                  <Button info onPress={() => this.handleLogOut()}>
+                                    <Icon name='md-power'/>
+                                  </Button>
+                              </Right>
+                        </CardItem>
 			         </Card>
 				</Content>
 			</Container>
