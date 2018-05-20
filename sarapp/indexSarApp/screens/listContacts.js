@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, AsyncStorage } from 'react-native'
 import { Container, Header, Content, List, 
 ListItem, Left, Body, Right, Thumbnail, Text, Fab, Icon, Button,
 Spinner, Card, SwipeRow

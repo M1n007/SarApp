@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const postRegister = (valueName, valueEmail, valuePass) => {
 
-  alert(JSON.stringify(valueName, valueEmail, valuePass))
   return{
     type: 'POST_REGISTER',
     payload: axios({

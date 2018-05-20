@@ -9,18 +9,23 @@ import {
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { connect } from 'react-redux';
 
-import {getSettingProfiles} from '../actions'
+import {getSettingProfiles, updateBio} from '../actions'
 
 class Setting extends Component{
 
     state = {
-        modeEdit: true
+        modeEdit: true,
+        viewProfile: true,
+        valueBio: '',
+        objectID: ''
     }
 
     handleModeEdit(){
         this.setState({ 
             modeEdit: !this.state.modeEdit, 
         })
+        let valueBio = this.state.valueBio
+        this.props.dispatch(updateBio(valueBio))
     }
 
     handleLogOut(){
@@ -36,13 +41,25 @@ class Setting extends Component{
         })
     }
 
+    handleView(){
+        this.setState({ 
+            viewProfile: !this.state.viewProfile, 
+        })
+        let valueId = this.state.objectID
+        this.props.dispatch(getSettingProfiles(valueId))
+    }
+
 	componentDidMount(){
+        AsyncStorage.getItem('objectID', (err, item) => {
+            this.setState({
+                objectID: item
+            })
+        })
     	this.props.dispatch(getSettingProfiles())
   	}
 
 
 	render(){
-
         const uri = 'https://openclipart.org/image/2400px/svg_to_png/277084/Male-Avatar-3.png'
         const uriKyk = 'https://wikianime.ru/i/series/7bc687c6fa61718b1b45b3d1be7ac5f1.jpg'
 
@@ -53,43 +70,49 @@ class Setting extends Component{
 					<Card>
 			            <CardItem style={{justifyContent: 'center', alignContent:'center', alignSelf:'center'}}>
 			              {
-			              	this.props.settingReducer.isLoading ?
-
-			              	(<Spinner color='blue' />)
-
-			              	:
-
-			              	(
-					            this.props.settingReducer.settings.map((items, index) => (
-					            	<Body key={index}>
-						                <Content style={{alignSelf:'center'}}>
-						                	<Body>
-                                                {/* <Thumbnail style={styles.thumbImg} large source={{uri: uri}} /> */}
-                                                <Text style={{fontSize: 25}}>{items.name}</Text>
-                                                {
-                                                    this.state.modeEdit == true ? 
-                                                    (
-                                                        <Text note style={{fontSize: 20}}>`{items.bio}`<Icon onPress={()=> this.handleModeEdit()} style={{color:'#48dbfb'}} name='md-create'/></Text>
-                                                       
-                                                    )
-                                                    :
-                                                    (
-                                                        <Item>
-                                                            <Input 
-                                                            placeholder={items.bio}
-                                                            placeholderTextColor='#D0D0D0'
-                                                            onChangeText={email => this.setState({ form: { ...this.state.form, login: email} })}
-                                                            />
-                                                            <Icon onPress={()=> this.handleModeEdit()} style={{color:'#48dbfb'}} name='md-checkmark'/>
-                                                        </Item>
-                                                    )
-                                                }
-                                            </Body>
-						                </Content>
-					                </Body>
-					            ))
-			              	)
-			              }
+                            this.state.viewProfile == true ?
+                            (
+                                <Button info onPress={()=> this.handleView()}>
+                                    <Text>View Profile</Text>
+                                </Button>
+                            ) :
+                                this.props.settingReducer.isLoading ?
+  
+                                (<Spinner color='blue' />)
+  
+                                :
+  
+                                (
+                                  this.props.settingReducer.settings.map((items, index) => (
+                                      <Body key={index}>
+                                          <Content style={{alignSelf:'center'}}>
+                                              <Body>
+                                                  {/* <Thumbnail style={styles.thumbImg} large source={{uri: uri}} /> */}
+                                                  <Text style={{fontSize: 25}}>{items.name}</Text>
+                                                  {
+                                                      this.state.modeEdit == true ? 
+                                                      (
+                                                          <Text note style={{fontSize: 20}}>`{items.bio}`<Icon onPress={()=> this.handleModeEdit()} style={{color:'#48dbfb'}} name='md-create'/></Text>
+                                                         
+                                                      )
+                                                      :
+                                                      (
+                                                          <Item regular style={{width:200}}>
+                                                              <Input 
+                                                              value={items.bio}
+                                                              placeholderTextColor='#D0D0D0'
+                                                              onChangeText={(bio) => this.setState({valueBio: bio })}
+                                                              />
+                                                              <Icon onPress={()=> this.handleModeEdit()} style={{color:'#48dbfb'}} name='md-checkmark'/>
+                                                          </Item>
+                                                      )
+                                                  }
+                                              </Body>
+                                          </Content>
+                                      </Body>
+                                  ))
+                                )
+                          }
 			            </CardItem>
                         <CardItem>
                               <Left>
