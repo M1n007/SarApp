@@ -31,7 +31,7 @@ class Status extends Component {
                                     <Body>
                                         <Text>{items.user.name}</Text>
                                     </Body>
-                                    {alert(JSON.stringify(items.user['name']))}
+                                    {alert(JSON.stringify(items.user.name))}
                                 </Left>
                             </CardItem>
 

@@ -7,7 +7,7 @@ export default class splashScreen extends Component{
     componentDidMount(){
         setTimeout(() => {
             this.props.navigation.navigate('logSarApp')
-        }, 1000);
+        }, 4000);
     }
 
     render(){
@@ -16,7 +16,7 @@ export default class splashScreen extends Component{
                 <Content>
                     <Body>
                      <Image style={{width:1100, marginTop:200}} source={require("../images/Sar.png")} />
-                     <Text style={{color:'white'}}>Sarana Application Chatting Untuk Para Wibu</Text>
+                     <Text style={{color:'white'}}>SarApp is Cooming. Powered by AAJ</Text>
                     </Body>
                 </Content>
             </Container>
