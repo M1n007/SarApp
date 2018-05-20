@@ -66,7 +66,7 @@ class logSarApp extends Component{
             alert('sukses login')
 
         }).catch(e => {
-            alert(e)
+            alert('gagal login.....silahkan periksa kembali informasi login anda')
         })
     }
 
@@ -74,12 +74,13 @@ class logSarApp extends Component{
         return(
             <Container style={{backgroundColor: '#ffffff'}}>
                 <Content>
-                    {/* <View style={styles.logo}>
-                        <Image 
+                    <View style={styles.logo}>
+                        {/* <Image 
                             source={require('../assets/images/logo.png')} 
                             style={{resizeMode: 'contain',height: 250,}}
-                        />
-                    </View> */}
+                        /> */}
+                        <Image style={{width:1100, marginTop:200, resizeMode: 'contain', marginTop:20}} source={require("../../indexSarApp/images/Sar.png")} />
+                    </View>
                     <Form>
 
                         <View style={styles.itemForm}>
@@ -136,14 +137,14 @@ export default connect(mapStateToProps)(logSarApp)
 
 const styles = StyleSheet.create({
     logo: {
-        marginTop: 20,
+        marginTop:20,
         flex: 1,
         justifyContent: 'center',
         alignSelf: 'center',
         backgroundColor: '#ffffff'
     },
     itemForm: {
-        marginTop: 15,
+        marginBottom: 20,
         marginLeft: 30,
         marginRight: 30
     },

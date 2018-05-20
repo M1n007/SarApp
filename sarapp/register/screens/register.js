@@ -49,12 +49,9 @@ class regSarApp extends Component{
         return(
             <Container style={{backgroundColor: '#ffffff'}}>
                 <Content>
-                    {/* <View style={styles.logo}>
-                        <Image 
-                            source={require('../assets/images/logo.png')} 
-                            style={{resizeMode: 'contain',height: 250,}}
-                        />
-                    </View> */}
+                    <View style={styles.logo}>
+                        <Image style={{width:1100, marginTop:200, resizeMode: 'contain', marginTop:20}} source={require("../../indexSarApp/images/Sar.png")} />
+                    </View>
                     <Form>
 
                         <View style={styles.itemForm}>

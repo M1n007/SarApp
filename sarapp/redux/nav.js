@@ -1,6 +1,6 @@
 import RootNavigator from '../navigators/RootNavigator';
 
-const initialState = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams('logSarApp'));
+const initialState = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams('splashScreen'));
 
 const navReducer = (state = initialState, action) => {
   const nextState = RootNavigator.router.getStateForAction(action, state);

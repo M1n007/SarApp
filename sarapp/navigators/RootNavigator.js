@@ -10,11 +10,18 @@ import chatBox from '../indexSarApp/screens/chatBox'
 import Profile from '../profile/screens/profile'
 import Setting from '../setting/screens/setting'
 import regSarApp from '../register/screens/register'
+import splashScreen from '../indexSarApp/screens/splashScreen'
 
 
 
 const RootNavigator = StackNavigator({
 
+  splashScreen:{
+    screen: splashScreen,
+    navigationOptions:{
+      header: null
+    }
+  },
   logSarApp:{
     screen: logSarApp,
     navigationOptions:{

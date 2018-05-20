@@ -22,7 +22,7 @@ const updateBio = (valueBio, valueId) => {
 	return{
 		type: 'EDIT_PROFILES',
 		payload: axios({
-			method:'PUT',
+			method:'POST',
 			url,
 			data: valueBio
 		})
