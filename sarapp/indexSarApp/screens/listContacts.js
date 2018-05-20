@@ -10,7 +10,7 @@ import {getListProfiles} from '../actions'
 class listContacts extends Component {
 
     componentDidMount(){
-    	this.props.dispatch(getListProfiles())
+        this.props.dispatch(getListProfiles())
   	}
     
     navigateToChatBox(titleYourName){
@@ -67,7 +67,7 @@ class listContacts extends Component {
 			 								}
 			 							/>
 			 						</Card>
-					            ))
+					        ))
 		              	)
 					}
             </Content>

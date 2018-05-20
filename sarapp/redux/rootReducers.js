@@ -7,6 +7,7 @@ import listUserReducers from '../indexSarApp/reducers'
 import profileReducer from '../profile/reducers'
 import settingReducer from '../setting/reducers'
 import registerReducer from '../register/reducers'
+import statusReducer from '../status/reducers'
 
 const rootReducers = combineReducers({
   nav: nav,
@@ -15,6 +16,7 @@ const rootReducers = combineReducers({
   profileReducer: profileReducer,
   settingReducer: settingReducer,
   registerReducer: registerReducer,
+  statusReducer: statusReducer,
   form: formReducer
 })
 

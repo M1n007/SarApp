@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Content, Text, Tab, Tabs, TabHeading, Icon} from 'native-base'
 
 import Chats from './chat'
-import Status from './status'
+import Status from '../../status/screens/status'
 
 export default class indexSarApp extends Component{
 
